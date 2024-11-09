@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { addVehicle } from '../controllers/vehicle/vehicleController';
+import { addVehicle, updateVehicleMileage } from '../controllers/vehicle/vehicleController';
 import { verifyToken } from '../middlewares/verifyToken';
-import { getMaintenanceRecommendations } from '../controllers/maintenance/maintenanceController';
+import { getMaintenanceRecommendations, updateMaintenanceStatus } from '../controllers/maintenance/maintenanceController';
 import { getVehicle } from '../controllers/vehicle/vehicleController';
 
 
@@ -11,4 +11,7 @@ router.post('/add', verifyToken, addVehicle); // Ruta para agregar un vehículo
 router.post('/:vehicleId/maintenance', verifyToken, getMaintenanceRecommendations);
 
 router.get('/:vehicleId', verifyToken, getVehicle);
+
+router.put('/:vehicleId/mileage', verifyToken, updateVehicleMileage);
+router.patch('/:vehicleId/updateMaintenance', verifyToken, updateMaintenanceStatus);
 export default router;
